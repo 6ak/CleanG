@@ -74,7 +74,9 @@ If you use OpenNetVM in your work, please cite our paper:
 _Please let us know if you use OpenNetVM in your research by [emailing us](mailto:timwood@gwu.edu) or completing this [short survey](https://goo.gl/forms/oxcnGO45Kxq1Zyyi2)._
 
 
-
+Team
+--
+Currently maintained by a list of these experienced devs:
 
 
 [onvm]: http://sdnfv.github.io/onvm/
