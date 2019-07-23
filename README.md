@@ -1,5 +1,6 @@
-[CleanG]
+CleanG
 ==
+This repository is the implementation of CleanG protocol and architecture for the next generations of the cellular network.
 To run this testbed, you need to install the OpenNetVM on three servers (lets call them F2, F3, and F4).
 After that, move the corresponding folder content (CleanG_FX) to the example folder of that server.
 Then run each ONVM instance and each NF in that machine by using ANON executable files in each folder.
