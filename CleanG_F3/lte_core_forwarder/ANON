@@ -1,0 +1,6 @@
+#export RTE_SDK="/home/amoha006/o4/openNetVM/dpdk"
+./go.sh -l 9 -- -m -r 1 --
+
+#./go.sh 9 1 100000
+#./go.sh 16 1 100000
+

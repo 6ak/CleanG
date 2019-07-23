@@ -1,0 +1,88 @@
+#following line is changed because weirdely .o files are updated in build folder only
+# and we were seeing error about onvm_nflib.o, previous we just had lteCore.o for the copyiny part
+#Acp -r /home/amoha006/o6/openNetVM/onvm/onvm_nflib/build/*.o /home/amoha006/o6/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+#Acp -r /home/amoha006/o6/openNetVM/onvm/onvm_nflib/build/*.a /home/amoha006/o6/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+echo "Lets start make here!"
+make
+echo "start copy to f3"
+#commenting next line because the .o file cannot be used anymore
+#scp /home/amoha006/o6/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/lteCore.o root@flashstack-3:/home/amoha006/o6/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+scp /home/amoha006/o6/openNetVM/onvm/onvm_nflib/lteCore.h root@flashstack-3:/home/amoha006/o6/openNetVM/onvm/onvm_nflib/
+scp /home/amoha006/o6/openNetVM/onvm/onvm_nflib/lteCore.c root@flashstack-3:/home/amoha006/o6/openNetVM/onvm/onvm_nflib/
+ssh  root@flashstack-3 'export ONVM_HOME="/home/amoha006/o6/openNetVM";export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/onvm'
+#scp flashstack-3:/home/amoha006/o6/openNetVM/onvm/onvm_nflib/build/lteCore.o flashstack-3:/home/amoha006/o6/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+#echo "start copy to f4"
+#Similar to above, commenting out .o file because of the difference between version .o file cannot be used directly anymore
+#scp /home/amoha006/o5/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/lteCore.o root@flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+#scp /home/amoha006/o5/openNetVM/onvm/onvm_nflib/lteCore.h root@flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/
+#scp /home/amoha006/o5/openNetVM/onvm/onvm_nflib/lteCore.c root@flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/
+#echo "befeore making onvm_nflib on f4"
+#ssh  root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o5/openNetVM/onvm/onvm_nflib'
+#echo "after making onvm_nflib on f4"
+#echo "ANON! one of the onvm_nflibs are removed from path! make sure it is right thing to do!"
+#scp flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/build/lteCore.o flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/x86_64-native-linuxapp-gcc/
+#scp flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/build/lteCore.o flashstack-4:/home/amoha006/o5/openNetVM/onvm/onvm_nflib/onvm_nflib/x86_64-native-linuxapp-gcc/
+echo "start making lte forwarder"
+cd /home/amoha006/o6/openNetVM/examples/lte_forwarder
+make
+echo "start making lte forwarder"
+cd /home/amoha006/o6/openNetVM/examples/lte_forwarder2
+make
+#echo "start making lte enb"
+#cd /home/amoha006/o6/openNetVM/examples/lte_enb
+#make
+#echo "start making lte enb2"
+#cd /home/amoha006/o6/openNetVM/examples/lte_enb2
+#make
+echo "start making lte data"
+cd /home/amoha006/o6/openNetVM/examples/lte_data
+make
+echo "start making scenario generator"
+cd /home/amoha006/o6/openNetVM/examples/scenario_generator
+make
+echo "start making clean enb"
+cd /home/amoha006/o6/openNetVM/examples/clean_enb
+make
+echo "start making clean enb 2"
+cd /home/amoha006/o6/openNetVM/examples/clean_enb2
+make
+echo "start making clean enb 2"
+cd /home/amoha006/o6/openNetVM/examples/clean_enb12
+make
+echo "start remote makes F3"
+echo "Make lte_core_forwarder f3"
+ssh  root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_core_forwarder'
+echo "Make lte_core_forwarder2 f3"
+ssh  root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_core_forwarder2'
+echo "Make lte_core_forwarder3 f3"
+ssh  root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_core_forwarder3'
+echo "Make clean_core_control f3"
+ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/clean_core_control'
+echo "Make lte_replier f3"
+ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_replier'
+echo "Make lte_replier2 f3"
+ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_replier2'
+echo "Make lte_replier3 f3"
+ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;export RTE_TARGET="x86_64-native-linuxapp-gcc";make -C /home/amoha006/o6/openNetVM/examples/lte_replier3'
+#echo "Make lte_sgw f3"
+#ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;make -C /home/amoha006/o6/openNetVM/examples/lte_SGW'
+#echo "Make lte_PGW f3"
+#ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;make -C /home/amoha006/o6/openNetVM/examples/lte_PGW'
+#echo "Make lte_MME f3"
+#ssh root@flashstack-3 'export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk" ;make -C /home/amoha006/o6/openNetVM/examples/lte_MME'
+#cd /home/amoha006/o6/openNetVM/onvm/onvm_nflib
+#echo "start remote makes F4"
+#echo "Make lte_core_forwarder f4"
+#ssh  root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/lte_core_forwarder'
+#echo "Make clean_core_control f4"
+#ssh root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/clean_core_control'
+#echo "Make lte_replier f4"
+#ssh root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/lte_replier'
+#echo "Make lte_sgw f4"
+#ssh root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/lte_SGW'
+#echo "Make lte_PGW f4"
+#ssh root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/lte_PGW'
+#echo "Make lte_MME f4"
+#ssh root@flashstack-4 'export RTE_SDK="/home/amoha006/o5/openNetVM/dpdk" ;make -C /home/amoha006/o5/openNetVM/examples/lte_MME'
+#cd /home/amoha006/o5/openNetVM/onvm/onvm_nflib
+

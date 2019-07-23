@@ -1,0 +1,23 @@
+sleepBetweenSteps=2
+echo "enter run type, 0 for LTE"
+read runType
+echo "start onvm"
+cd /home/amoha006/o4/openNetVM/onvm/
+./ANON &
+sleep $sleepBetweenSteps
+echo "lte forwarder"
+cd /home/amoha006/o4/openNetVM/examples/lte_forwarder/
+./ANON & >> /home/amoha006/o4/currentLog.txt
+sleep $sleepBetweenSteps
+echo "lte_data"
+cd /home/amoha006/o4/openNetVM/examples/lte_data/
+./ANON &>> /home/amoha006/o4/currentLog.txt
+sleep $sleepBetweenSteps
+echo "scenario generator"
+cd /home/amoha006/o4/openNetVM/examples/scenario_generator
+./ANON & >> /home/amoha006/o4/currentLog.txt
+if $runType==0 then
+echo "LTE MODE"
+else
+echo "CLEANG mode"
+fi

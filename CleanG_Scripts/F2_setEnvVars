@@ -1,0 +1,3 @@
+export ONVM_HOME="/home/amoha006/o6/openNetVM/"
+export RTE_SDK="/home/amoha006/o6/openNetVM/dpdk"
+export ONVM_NUM_HUGEPAGES=1024 

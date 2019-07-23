@@ -1,0 +1,4 @@
+#./go.sh 1,2,3,4,5 7 0xF0 -s stdout
+# the core mask for NFs 
+./go.sh 0,1,2,3,4 7 0x3FE0 -a 0x7f000000000 -v -s stdout
+#./go.sh 1,2,3,4,5 7 0xFFF0 -v -s stdout

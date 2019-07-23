@@ -1,0 +1,6 @@
+export RTE_SDK="/home/amoha006/o4/openNetVM/dpdk"
+#export RTE_TARGET=x86_64-native-linuxapp-gcc
+#export ONVM_NUM_HUGEPAGES=1024
+#ONVM_NIC_PCI=" 07:00.0 07:00.1 "
+#sudo sh -c "echo 0 > /proc/sys/kernel/randomize_va_space"
+

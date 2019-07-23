@@ -1,0 +1,12 @@
+ifdown p1p1
+ifdown em49
+ifdown p2p1
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -b igb_uio 08:00.0
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -b igb_uio 04:00.0
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -b igb_uio 05:00.0
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -u 04:00.1
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -u 08:00.1
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py -u 05:00.1
+/home/amoha006/o6/openNetVM/dpdk/usertools/dpdk-devbind.py --status
+
+

@@ -1,0 +1,8 @@
+ifdown p1p1
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py -b igb_uio 08:00.0
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py -u 04:00.1
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py -u 08:00.1
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py -u 05:00.1
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py -u 05:00.0
+/home/amoha006/o4/openNetVM/dpdk/tools/dpdk_nic_bind.py --status
+

@@ -1,0 +1,20 @@
+echo "please provide the string that describe this run!"
+read name
+echo "your selected name is $name"
+cd /home/amoha006/results
+ctime=$(date +%s)
+mkdir "$name"_"$ctime"
+cd "$name"_"$ctime"
+scp root@flashstack-2:/home/amoha006/o4/openNetVM/examples/lte_enb/output.txt ./
+scp root@flashstack-2:/home/amoha006/o4/openNetVM/examples/lte_enb/ULogf2enb1.txt ./
+scp root@flashstack-2:/home/amoha006/o4/openNetVM/examples/lte_enb2/ULogf2enb2.txt ./
+scp root@flashstack-2:/home/amoha006/o4/openNetVM/examples/lte_forwarder/ULogf2fwd.txt ./
+scp root@flashstack-3:/home/amoha006/o4/openNetVM/examples/lte_core_forwarder/ULogf3fwd.txt ./
+scp root@flashstack-3:/home/amoha006/o4/openNetVM/examples/lte_SGW/ULogf3sgw.txt ./
+scp root@flashstack-3:/home/amoha006/o4/openNetVM/examples/lte_PGW/ULogf3pgw.txt ./
+scp root@flashstack-3:/home/amoha006/o4/openNetVM/examples/lte_replier/ULogf3rpl.txt ./
+cp /home/amoha006/o4/openNetVM/examples/lte_core_forwarder/ULogf4forwarder.txt ./
+cp /home/amoha006/o4/openNetVM/examples/lte_SGW/ULogf4sgw.txt ./
+cp /home/amoha006/o4/openNetVM/examples/lte_PGW/ULogf4pgw.txt ./
+cp /home/amoha006/o4/openNetVM/examples/lte_MME/ULogf4mme.txt ./
+scp -r /home/amoha006/results/"$name"_"$ctime"/ amoha006@bolt.cs.ANON.edu:~/results/
